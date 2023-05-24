@@ -157,7 +157,7 @@ public class BigNumber implements BigNumberOperator {
             }
             //Vamos sumando los resultados con cada bucle
             BigNumber t = new BigNumber(res);
-            resFinal = resFinal.add(t);
+            resFinal = new BigNumber(resFinal.add(t));
             res = "";
         }
         return resFinal;
@@ -225,7 +225,7 @@ public class BigNumber implements BigNumberOperator {
             //Hacemos la división del número con su mitad
             BigNumber a = (new BigNumber(this.valor).div((temp)));
             //Luego sumamos el temporal
-            BigNumber b = (temp.add(a));
+            BigNumber b = new BigNumber(temp.add(a));
             res = ((b).div(new BigNumber("2")));
         } while (!String.valueOf(temp.sub(res)).equals("0"));
         return (res);
