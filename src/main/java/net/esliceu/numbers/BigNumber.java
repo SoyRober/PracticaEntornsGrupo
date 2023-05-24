@@ -1,6 +1,6 @@
 package net.esliceu.numbers;
 
-public class BigNumber {
+public class BigNumber implements BigNumberOperator {
     String valor;
 
     // Constructor 1
@@ -13,7 +13,7 @@ public class BigNumber {
     }
 
     // Suma
-    BigNumber add(BigNumber other) {
+    public String add(BigNumber other) {
         String b1 = this.valor;
         String b2 = other.valor;
         String res = "";
@@ -53,7 +53,12 @@ public class BigNumber {
         //Si anterior es major a 9 añadimos al resultado 1
         if (anterior > 9) res = 1 + res;
 
-        return new BigNumber(res);
+        return res;
+    }
+
+    @Override
+    public String subtract(BigNumber secondBigNumber) {
+        return null;
     }
 
     private String[] agregarCeros(String b1, String b2) {

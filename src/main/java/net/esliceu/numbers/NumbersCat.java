@@ -1,7 +1,7 @@
 package net.esliceu.numbers;
 
-public class NumbersCat {
-    public static String say(long n) {
+public class NumbersCat implements Numbers {
+    public String say(long n) {
         if (n < 0) {
             return "Menys " + say(-n).toLowerCase();
         }
@@ -87,7 +87,7 @@ public class NumbersCat {
         return null;
     }
 
-    private static String calculaNombre(long n, int divisor, String xifra, String xifres) {
+    private String calculaNombre(long n, int divisor, String xifra, String xifres) {
         String nombre = "";
         int centena = (int) (n / divisor);
         int resto = (int) (n % divisor);
