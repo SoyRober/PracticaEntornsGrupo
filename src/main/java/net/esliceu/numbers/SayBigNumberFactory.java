@@ -40,7 +40,7 @@ public class SayBigNumberFactory {
     public String add(String first, String second) {
         initOperator(first);
 
-        return operator.add(new BigNumber(second));
+        return String.valueOf(operator.add(new BigNumber(second)));
     }
 
 
