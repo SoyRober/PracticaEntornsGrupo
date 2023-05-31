@@ -5,6 +5,7 @@ public class NumbersCat implements Numbers {
         if (n < 0) {
             return "Menys " + say(-n).toLowerCase();
         }
+
         switch ((int) n) {
             case 0:
                 return "Zero";
@@ -27,6 +28,7 @@ public class NumbersCat implements Numbers {
             case 9:
                 return "Nou";
         }
+
         switch ((int) n) {
             case 10:
                 return "Deu";
@@ -48,11 +50,11 @@ public class NumbersCat implements Numbers {
                 return "Noranta";
         }
 
-        int unitat = 0;
-        int decena = 0;
-        int divisor = 0;
-        String xifra = "";
-        String xifres = "";
+        int unitat;
+        int decena;
+        int divisor;
+        String xifra;
+        String xifres;
 
         if (n > 20 && n < 100) {
             unitat = (int) n % 10;

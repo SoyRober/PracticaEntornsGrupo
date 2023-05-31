@@ -1,135 +1,136 @@
+import net.esliceu.numbers.Numbers;
+import net.esliceu.numbers.NumbersCat;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 public class NumbersCatTest {
-/*
-    1. Zero
-    2. Unitats (1-9)
-    3. Negatius
-    4. Decenes
-        4.1 30-99
-        4.2 20-29
-        4.3 10-19
- */
+
+    private Numbers numbers;
+
+    @BeforeEach
+    void setUp() {
+        numbers = new NumbersCat();
+    }
 
     @Test
     public void donat_0_retorna_Zero() {
-        Assertions.assertEquals("Zero", NumbersCat.say(0L));
+        Assertions.assertEquals("Zero", numbers.say(0L));
     }
 
     @Test
     public void donat_1_retorna_Un() {
-        Assertions.assertEquals("Un", NumbersCat.say(1L));
+        Assertions.assertEquals("Un", numbers.say(1L));
     }
 
     @Test
     public void donat_2_retorna_Dos() {
-        Assertions.assertEquals("Dos", NumbersCat.say(2L));
+        Assertions.assertEquals("Dos", numbers.say(2L));
     }
 
     @Test
     public void donat_9_retorna_Nou() {
-        Assertions.assertEquals("Nou", NumbersCat.say(9L), "Donat el 9 retorna Nou");
+        Assertions.assertEquals("Nou", numbers.say(9L), "Donat el 9 retorna Nou");
     }
 
     @Test
     public void donat_Menys3() {
-        Assertions.assertEquals("Menys tres", NumbersCat.say(-3));
+        Assertions.assertEquals("Menys tres", numbers.say(-3));
     }
 
     @Test
     public void donat_30() {
-        Assertions.assertEquals("Trenta", NumbersCat.say(30));
+        Assertions.assertEquals("Trenta", numbers.say(30));
     }
 
     @Test
     public void donat_31() {
-        Assertions.assertEquals("Trenta-un", NumbersCat.say(31));
+        Assertions.assertEquals("Trenta-un", numbers.say(31));
     }
 
     @Test
     public void donat_41_retorna_Quaranta_un() {
-        Assertions.assertEquals("Quaranta-un", NumbersCat.say(41L));
+        Assertions.assertEquals("Quaranta-un", numbers.say(41L));
     }
 
     @Test
     public void donat_39() {
-        Assertions.assertEquals("Trenta-nou", NumbersCat.say(39));
+        Assertions.assertEquals("Trenta-nou", numbers.say(39));
     }
 
     @Test
     public void donat_41() {
-        Assertions.assertEquals("Quaranta-un", NumbersCat.say(41));
+        Assertions.assertEquals("Quaranta-un", numbers.say(41));
     }
 
     @Test
     public void donat_40() {
-        Assertions.assertEquals("Quaranta", NumbersCat.say(40));
+        Assertions.assertEquals("Quaranta", numbers.say(40));
     }
 
     @Test
     public void donat_99_retorna_Noranta_nou() {
-        Assertions.assertEquals("Noranta-nou", NumbersCat.say(99L));
+        Assertions.assertEquals("Noranta-nou", numbers.say(99L));
     }
 
     @Test
     public void donat_20_retorna_Vint() {
-        Assertions.assertEquals("Vint", NumbersCat.say(20L));
+        Assertions.assertEquals("Vint", numbers.say(20L));
     }
 
     @Test
     public void donat_21_retorna_Vint_i_un() {
-        Assertions.assertEquals("Vint-i-un", NumbersCat.say(21L));
+        Assertions.assertEquals("Vint-i-un", numbers.say(21L));
     }
 
     @Test
     public void donat_100_retorna_Cent() {
-        Assertions.assertEquals("Cent", NumbersCat.say(100L));
+        Assertions.assertEquals("Cent", numbers.say(100L));
     }
 
     @Test
     public void donat_999_retorna_Nou_cents_noranta_nou() {
-        Assertions.assertEquals("Nou-cents noranta-nou", NumbersCat.say(999L));
+        Assertions.assertEquals("Nou-cents noranta-nou", numbers.say(999L));
     }
 
     @Test
     public void donat_1000_retorna_Mil() {
-        Assertions.assertEquals("Mil", NumbersCat.say(1000L));
+        Assertions.assertEquals("Mil", numbers.say(1000L));
     }
 
     @Test
     public void donat_1057_retorna_Mil_cinquanta_set() {
-        Assertions.assertEquals("Mil cinquanta-set", NumbersCat.say(1057L));
+        Assertions.assertEquals("Mil cinquanta-set", numbers.say(1057L));
     }
 
     @Test
     public void donat_1237() {
-        Assertions.assertEquals("Mil dos-cents trenta-set", NumbersCat.say(1237L));
+        Assertions.assertEquals("Mil dos-cents trenta-set", numbers.say(1237L));
     }
 
     @Test
     public void donat_5123() {
-        Assertions.assertEquals("Cinc mil cent vint-i-tres", NumbersCat.say(5123L));
+        Assertions.assertEquals("Cinc mil cent vint-i-tres", numbers.say(5123L));
     }
 
     @Test
     public void donat_323191() {
-        Assertions.assertEquals("Tres-cents vint-i-tres mil cent noranta-un", NumbersCat.say(323191L));
+        Assertions.assertEquals("Tres-cents vint-i-tres mil cent noranta-un", numbers.say(323191L));
     }
 
     @Test
     public void donat_1000000() {
-        Assertions.assertEquals("Milió", NumbersCat.say(1000000L));
+        Assertions.assertEquals("Milió", numbers.say(1000000L));
     }
 
     @Test
     public void donat_1_023_983() {
-        Assertions.assertEquals("Milió vint-i-tres mil nou-cents vuitanta-tres", NumbersCat.say(1_023_983L));
+        Assertions.assertEquals("Milió vint-i-tres mil nou-cents vuitanta-tres", numbers.say(1_023_983L));
     }
 
     @Test
     public void donat_6_204_323() {
-        Assertions.assertEquals("Sis milions dos-cents quatre mil tres-cents vint-i-tres", NumbersCat.say(6_204_323L));
+        Assertions.assertEquals("Sis milions dos-cents quatre mil tres-cents vint-i-tres", numbers.say(6_204_323L));
     }
 }
