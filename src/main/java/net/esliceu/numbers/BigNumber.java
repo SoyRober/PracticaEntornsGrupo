@@ -77,7 +77,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // Resta
-    BigNumber sub(BigNumber other) {
+    public BigNumber sub(BigNumber other) {
         String b1 = this.valor;
         String b2 = other.valor;
         String res = "";
@@ -115,7 +115,7 @@ public class BigNumber implements BigNumberOperator {
 
 
     // Multiplica
-    BigNumber mult(BigNumber other) {
+    public BigNumber mult(BigNumber other) {
         String b1 = this.valor;
         String b2 = other.valor;
         String res = "";
@@ -177,7 +177,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // Divideix
-    BigNumber div(BigNumber other) {
+    public BigNumber div(BigNumber other) {
         StringBuilder coef = new StringBuilder();
         String selecDeNum = "";
         String mult = "";
@@ -214,7 +214,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // Arrel quadrada
-    BigNumber sqrt() {
+    public BigNumber sqrt() {
         BigNumber temp;
         //Lo dividimos entre dos ya que no será mayor que la mitad
         BigNumber res = (new BigNumber(this.valor).div(new BigNumber("2")));
@@ -232,7 +232,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // Potència
-    BigNumber power(int n) {
+    public BigNumber power(int n) {
         BigNumber potencia = new BigNumber(this.valor);
         //Multiplicamos por el mismo número hasta que n sea menor que i
         for (int i = 1; i < n; i++) {
@@ -242,7 +242,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // Factorial
-    BigNumber factorial() {
+    public BigNumber factorial() {
         BigNumber res = new BigNumber(this.valor);
         BigNumber menos1 = new BigNumber("1");
         //Restamos 1 al número
@@ -256,7 +256,7 @@ public class BigNumber implements BigNumberOperator {
     }
 
     // MCD. Torna el Màxim comú divisor
-    BigNumber mcd(BigNumber other) {
+    public BigNumber mcd(BigNumber other) {
         String b1 = this.valor;
         String b2 = other.valor;
         // Mientras que b2 no este vació entramos en el bucle
