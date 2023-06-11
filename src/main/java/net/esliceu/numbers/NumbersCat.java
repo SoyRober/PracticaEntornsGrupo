@@ -69,22 +69,19 @@ public class NumbersCat implements Numbers {
             divisor = 100;
             xifra = "Cent";
             xifres = "-cents";
-            String nombre = calculaNombre(n, divisor, xifra, xifres);
-            return nombre;
+            return calculaNombre(n, divisor, xifra, xifres);
         }
         if (n > 999 && n < 1000000) {
             divisor = 1000;
             xifra = "Mil";
             xifres = " mil";
-            String nombre = calculaNombre(n, divisor, xifra, xifres);
-            return nombre;
+            return calculaNombre(n, divisor, xifra, xifres);
         }
         if (n > 999_999) {
             divisor = 1000000;
             xifra = "Milió";
             xifres = " milions";
-            String nombre = calculaNombre(n, divisor, xifra, xifres);
-            return nombre;
+            return calculaNombre(n, divisor, xifra, xifres);
         }
         return null;
     }

@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 
 public class BigNumberTest {
 
-    private BigNumber bignumber;
-
     @Test
     public void sumes() {
         BigNumber b1, b2;

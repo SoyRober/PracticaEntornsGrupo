@@ -59,14 +59,6 @@ public class SayBigNumberFactory {
     }
 
 
-    public String multiply(String first, String second) throws NumbersException {
-        throw new NumbersException("Method not implemented");
-    }
-
-    public String divide(String first, String second) throws NumbersException {
-        throw new NumbersException("Method not implemented");
-    }
-
     private void checkParameters(String operation, String first, String second) throws NumbersException {
         checkOperation(operation);
 
