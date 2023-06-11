@@ -133,4 +133,29 @@ public class NumbersCatTest {
     public void donat_6_204_323() {
         Assertions.assertEquals("Sis milions dos-cents quatre mil tres-cents vint-i-tres", numbers.say(6_204_323L));
     }
+
+    @Test
+    public void donat_1845135() {
+        Assertions.assertEquals("Milió vuit-cents quaranta-cinc mil cent trenta-cinc", numbers.say(1845135L));
+    }
+
+    @Test
+    public void donat_1086() {
+        Assertions.assertEquals("Mil vuitanta-sis", numbers.say(1086L));
+    }
+
+    @Test
+    public void donat_658715() {
+        Assertions.assertEquals("Sis-cents cinquanta-vuit mil set-cents cinquanta-tres", numbers.say(658753L));
+    }
+
+    @Test
+    public void donat_1086_retorna_Mil_vuitanta_sis() {
+        Assertions.assertEquals("Mil vuitanta-sis", numbers.say(1086L));
+    }
+
+    @Test
+    public void donat_1845135_retorna_Milió_vuit_cents_quaranta_cinc_mil_cent_trenta_cinc() {
+        Assertions.assertEquals("Milió vuit-cents quaranta-cinc mil cent trenta-cinc", numbers.say(1845135L));
+    }
 }
