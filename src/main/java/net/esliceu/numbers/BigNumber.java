@@ -57,9 +57,29 @@ public class BigNumber implements BigNumberOperator {
     }
 
     @Override
-    public String substract(BigNumber secondBigNumber) {
+    public String subtract(BigNumber secondBigNumber) {
+        return null;
+    }
+
+    private String[] agregarCeros(String b1, String b2) {
+        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
+        if (b1.length() > b2.length()) {
+            while (b2.length() != b1.length()) {
+                b2 = 0 + b2;
+            }
+        } else {
+            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
+            while (b1.length() != b2.length()) {
+                b1 = 0 + b1;
+            }
+        }
+        return new String[]{b1, b2};
+    }
+
+    // Resta
+    public BigNumber sub(BigNumber other) {
         String b1 = this.valor;
-        String b2 = secondBigNumber.valor;
+        String b2 = other.valor;
         String res = "";
         int resta = 0;
         boolean llevo1 = false;
@@ -90,52 +110,20 @@ public class BigNumber implements BigNumberOperator {
             //Con cada ciclo le añadimos la resta al resultado
             res = resta + res;
         }
+        return new BigNumber(res);
+    }
+
+    private String agregarCerosMultDerecha(String b2, String res, int i) {
+        //Aquí entraremos cada vez que cambiemos para multiplicar con el número de abajo, siempre a partir del primer número
+        if (b2.length() != i) {
+            int cantidad = 0;
+            cantidad = b2.length() - i;
+            //Añadiremos tantos ceros a la derecha en base al número con el que multiplicamos
+            for (int j = cantidad; j > 0; j--) {
+                res += 0;
+            }
+        }
         return res;
-    }
-
-    private String[] agregarCeros(String b1, String b2) {
-        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
-        if (b1.length() > b2.length()) {
-            while (b2.length() != b1.length()) {
-                b2 = 0 + b2;
-            }
-        } else {
-            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
-            while (b1.length() != b2.length()) {
-                b1 = 0 + b1;
-            }
-        }
-        return new String[]{b1, b2};
-    }
-
-    // Compara dos BigNumber. Torna 0 si són iguals, -1
-    // si el primer és menor i torna 1 si el segon és menor
-    public int compareTo(BigNumber other) {
-        String b1 = this.valor;
-        String b2 = other.valor;
-        //Sí el primer número és más largo que el segundo devolvemos "1"
-        if (b1.length() > b2.length()) {
-            return 1;
-            //Sí el segundo número és más largo que el primero devolvemos "-1"
-        } else if (b1.length() < b2.length()) {
-            return -1;
-        } else {
-            //En este punto ambos número son igual de largos
-            for (int i = 0; i < b1.length(); i++) {
-                //Cogemos la cifra de cada numero que le pertoca designada por i
-                int c1 = Integer.parseInt(String.valueOf(b1.charAt(i)));
-                int c2 = Integer.parseInt(String.valueOf(b2.charAt(i)));
-                //Sí entramos en este condicional el primer número será el grande y devolvemos 1
-                if (c1 > c2) {
-                    return 1;
-                    //Si entramos en este es que el segundo número es más grande i devolvemos -1
-                } else if (c1 < c2) {
-                    return -1;
-                }
-            }
-        }
-        //Si no hemos entrado en ninguno de los "if" anteriores quiere decir que ambos número son exactamente iguales
-        return 0;
     }
 
     String quitarCeros(String b1) {
@@ -156,17 +144,5 @@ public class BigNumber implements BigNumberOperator {
         //Si el primer caracter del número es 0 le asignamos 0 como string
         if (b1.charAt(0) == '0') b1 = "0";
         return b1;
-    }
-
-    // Torna un String representant el número
-    public String toString() {
-        return this.valor;
-    }
-
-    // Mira si dos objectes BigNumber són iguals
-    public boolean equals(Object other) {
-        BigNumber b = (BigNumber) other;
-        if (b.valor.equals(this.valor)) return true;
-        return false;
     }
 }
