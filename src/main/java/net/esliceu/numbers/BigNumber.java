@@ -57,29 +57,9 @@ public class BigNumber implements BigNumberOperator {
     }
 
     @Override
-    public String subtract(BigNumber secondBigNumber) {
-        return null;
-    }
-
-    private String[] agregarCeros(String b1, String b2) {
-        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
-        if (b1.length() > b2.length()) {
-            while (b2.length() != b1.length()) {
-                b2 = 0 + b2;
-            }
-        } else {
-            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
-            while (b1.length() != b2.length()) {
-                b1 = 0 + b1;
-            }
-        }
-        return new String[]{b1, b2};
-    }
-
-    // Resta
-    public BigNumber sub(BigNumber other) {
+    public String substract(BigNumber secondBigNumber) {
         String b1 = this.valor;
-        String b2 = other.valor;
+        String b2 = secondBigNumber.valor;
         String res = "";
         int resta = 0;
         boolean llevo1 = false;
@@ -108,9 +88,24 @@ public class BigNumber implements BigNumberOperator {
                 resta = c1 - c2;
             }
             //Con cada ciclo le añadimos la resta al resultado
-            res = resta + res;
+            res += res;
         }
-        return new BigNumber(res);
+        return res;
+    }
+
+    private String[] agregarCeros(String b1, String b2) {
+        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
+        if (b1.length() > b2.length()) {
+            while (b2.length() != b1.length()) {
+                b2 = 0 + b2;
+            }
+        } else {
+            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
+            while (b1.length() != b2.length()) {
+                b1 = 0 + b1;
+            }
+        }
+        return new String[]{b1, b2};
     }
 
     private String agregarCerosMultDerecha(String b2, String res, int i) {
