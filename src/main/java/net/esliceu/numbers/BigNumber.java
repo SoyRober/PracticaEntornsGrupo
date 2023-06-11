@@ -57,29 +57,9 @@ public class BigNumber implements BigNumberOperator {
     }
 
     @Override
-    public String subtract(BigNumber secondBigNumber) {
-        return null;
-    }
-
-    private String[] agregarCeros(String b1, String b2) {
-        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
-        if (b1.length() > b2.length()) {
-            while (b2.length() != b1.length()) {
-                b2 = 0 + b2;
-            }
-        } else {
-            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
-            while (b1.length() != b2.length()) {
-                b1 = 0 + b1;
-            }
-        }
-        return new String[]{b1, b2};
-    }
-
-    // Resta
-    public BigNumber sub(BigNumber other) {
+    public String substract(BigNumber secondBigNumber) {
         String b1 = this.valor;
-        String b2 = other.valor;
+        String b2 = secondBigNumber.valor;
         String res = "";
         int resta = 0;
         boolean llevo1 = false;
@@ -110,168 +90,22 @@ public class BigNumber implements BigNumberOperator {
             //Con cada ciclo le añadimos la resta al resultado
             res = resta + res;
         }
-        return new BigNumber(res);
-    }
-
-
-    // Multiplica
-    public BigNumber mult(BigNumber other) {
-        String b1 = this.valor;
-        String b2 = other.valor;
-        String res = "";
-        int mult = 0;
-        int llevoCantidad = 0;
-        boolean llevoNumero = false;
-        BigNumber resFinal = new BigNumber("0");
-        //Recorremos el número de abajo de derecha a izquierda
-        for (int i = b2.length(); i > 0; i--) {
-            //Seleccionamos la cifra de abajo que le pertoca por el valor de i
-            int c2 = Integer.parseInt(String.valueOf(b2.charAt(i - 1)));
-            res = agregarCerosMultDerecha(b2, res, i);
-            //Recorremos el número de abajo de derecha a izquierda
-            for (int j = b1.length(); j > 0; j--) {
-                int c1 = Integer.parseInt(String.valueOf(b1.charAt(j - 1)));
-                //Multiplicacmos los números
-                mult = c1 * c2;
-                //Si llevo número es true se lo concatenamos a mult y llevoNumero lo ponemos en false
-                if (llevoNumero) {
-                    mult += llevoCantidad;
-                    llevoNumero = false;
-                }
-                //Si la multiplicación ha sido mayor que 9
-                if (mult > 9) {
-                    llevoNumero = true;
-                    //Cogemos la cifra de la derecha para luego podersela concatenar
-                    llevoCantidad = Integer.parseInt(String.valueOf(String.valueOf(mult).charAt(0)));
-                    //Le concatenamos
-                    res = String.valueOf(mult).substring(1) + res;
-                } else {
-                    //Si la multiplicación es menor o igual a 9 la añadiremos directamente al resultado
-                    res = mult + res;
-                }
-            }
-            // Añadir ceros a "sumar" a la derecha segun sea el digito que calculas
-            if (llevoNumero) {
-                res = llevoCantidad + res;
-                llevoNumero = false;
-            }
-            //Vamos sumando los resultados con cada bucle
-            BigNumber t = new BigNumber(res);
-            resFinal = new BigNumber(resFinal.add(t));
-            res = "";
-        }
-        return resFinal;
-    }
-
-    private String agregarCerosMultDerecha(String b2, String res, int i) {
-        //Aquí entraremos cada vez que cambiemos para multiplicar con el número de abajo, siempre a partir del primer número
-        if (b2.length() != i) {
-            int cantidad = 0;
-            cantidad = b2.length() - i;
-            //Añadiremos tantos ceros a la derecha en base al número con el que multiplicamos
-            for (int j = cantidad; j > 0; j--) {
-                res += 0;
-            }
-        }
         return res;
     }
 
-    // Divideix
-    public BigNumber div(BigNumber other) {
-        StringBuilder coef = new StringBuilder();
-        String selecDeNum = "";
-        String mult = "";
-        //Miramos cual de los dos numeros es más grande
-        int majorMenor = this.compareTo(other);
-        //Si this es menor devolvemos 0
-        if (majorMenor == -1) {
-            return new BigNumber("0");
-            //Si son iguales devolvemos 1
-        } else if (majorMenor == 0) {
-            return new BigNumber("1");
+    private String[] agregarCeros(String b1, String b2) {
+        //Si b1 es mayor que b2 le añadimos a b2 0 hasta que tengan la misma longitud
+        if (b1.length() > b2.length()) {
+            while (b2.length() != b1.length()) {
+                b2 = 0 + b2;
+            }
         } else {
-            for (int i = 0; i < this.valor.length(); i++) {
-                BigNumber c = new BigNumber(String.valueOf(this.valor.charAt(i)));
-                selecDeNum += c;
-                if (new BigNumber(selecDeNum).compareTo(other) >= 0) {
-                    for (int j = 1; j < 11; j++) {
-                        mult = String.valueOf(other.mult(new BigNumber(String.valueOf(j))));
-                        if (new BigNumber(mult).compareTo(new BigNumber(selecDeNum)) > 0) {
-                            coef.append(j - 1);
-                            selecDeNum = String.valueOf(new BigNumber(selecDeNum).sub((other.mult(
-                                    new BigNumber(String.valueOf(j - 1))))));
-                            break;
-                        }
-                    }
-                } else {
-                    if (!coef.toString().equals("")) {
-                        coef.append("0");
-                    }
-                }
+            //Si b1 no es igual que b2 le añadimos a b1 0 hasta que tengan la misma longitud
+            while (b1.length() != b2.length()) {
+                b1 = 0 + b1;
             }
         }
-        return new BigNumber(String.valueOf(coef));
-    }
-
-    // Arrel quadrada
-    public BigNumber sqrt() {
-        BigNumber temp;
-        //Lo dividimos entre dos ya que no será mayor que la mitad
-        BigNumber res = (new BigNumber(this.valor).div(new BigNumber("2")));
-        //Hacemos que entre en el bucle
-        do {
-            //Guardamos el resultado en la variable temporal
-            temp = res;
-            //Hacemos la división del número con su mitad
-            BigNumber a = (new BigNumber(this.valor).div((temp)));
-            //Luego sumamos el temporal
-            BigNumber b = new BigNumber(temp.add(a));
-            res = ((b).div(new BigNumber("2")));
-        } while (!String.valueOf(temp.sub(res)).equals("0"));
-        return (res);
-    }
-
-    // Potència
-    public BigNumber power(int n) {
-        BigNumber potencia = new BigNumber(this.valor);
-        //Multiplicamos por el mismo número hasta que n sea menor que i
-        for (int i = 1; i < n; i++) {
-            potencia = potencia.mult(this);
-        }
-        return potencia;
-    }
-
-    // Factorial
-    public BigNumber factorial() {
-        BigNumber res = new BigNumber(this.valor);
-        BigNumber menos1 = new BigNumber("1");
-        //Restamos 1 al número
-        BigNumber numero = new BigNumber(String.valueOf(this.sub(menos1)));
-        //Mientras que numero no sea 1 entramos en el bucle
-        while (!numero.valor.equals("1")) {
-            res = res.mult(numero);
-            numero = numero.sub(menos1);
-        }
-        return res;
-    }
-
-    // MCD. Torna el Màxim comú divisor
-    public BigNumber mcd(BigNumber other) {
-        String b1 = this.valor;
-        String b2 = other.valor;
-        // Mientras que b2 no este vació entramos en el bucle
-        while (!String.valueOf(b2).equals("")) {
-            //Esta variable temporal es para no perder b2
-            String temporal = b2;
-            //Calculamos el resto mediante la multiplicación, division i resta
-            b2 = String.valueOf(new BigNumber(b1).sub(new BigNumber(b1).div(new BigNumber(b2)).mult(new BigNumber(b2))));
-            b1 = temporal;
-            String c = String.valueOf(b2.charAt(0));
-            if (c.equals("0")) {
-                b2 = "";
-            }
-        }
-        return (new BigNumber(b1));
+        return new String[]{b1, b2};
     }
 
     // Compara dos BigNumber. Torna 0 si són iguals, -1

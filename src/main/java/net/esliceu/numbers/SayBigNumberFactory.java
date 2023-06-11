@@ -47,7 +47,7 @@ public class SayBigNumberFactory {
     public String subtract(String first, String second) {
         initOperator(first);
 
-        return operator.subtract(new BigNumber(second));
+        return operator.substract(new BigNumber(second));
     }
 
     private void initOperator(String first) {
